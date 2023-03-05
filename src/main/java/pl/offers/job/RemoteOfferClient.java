@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface RemoteOfferClient {
 
-    List<OfferDto> getOffers();
+    List<JobOfferDto> getOffers();
 
 }

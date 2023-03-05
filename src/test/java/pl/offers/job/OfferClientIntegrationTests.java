@@ -23,7 +23,7 @@ public class OfferClientIntegrationTests {
 
     int port = SocketUtils.findAvailableTcpPort();
     String uri = "http://localhost:" + port + "/offers";
-    RemoteOfferClient remoteOfferClient = new JobOfferTestConfig().remoteOfferClientTestImpl(uri);
+    RemoteOfferClient remoteOfferClient = new JobOfferTestConfig().remoteOfferClientTest(uri);
 
     WireMockServer wireMockServer;
 
@@ -70,7 +70,7 @@ public class OfferClientIntegrationTests {
                 .withStatus(HttpStatus.OK.value())
                 .withHeader("Content-Type", "application/json").withBody(bodyWithEmptyJSONArray()))));
         //then
-        assertThrows(OfferNotFoundException.class, remoteOfferClient::getOffers);
+        assertThrows(JobOfferNotFoundException.class, remoteOfferClient::getOffers);
     }
 
     @Test
@@ -106,8 +106,8 @@ public class OfferClientIntegrationTests {
         return "[]";
     }
 
-    private OfferDto firstOfferDto() {
-        return OfferDto.builder()
+    private JobOfferDto firstOfferDto() {
+        return JobOfferDto.builder()
                 .companyName("S2Innovation Sp. z o. o.")
                 .jobPosition("Junior Remote Java Developer")
                 .salary("4k - 8k PLN")
@@ -115,8 +115,8 @@ public class OfferClientIntegrationTests {
                 .build();
     }
 
-    private OfferDto secondOfferDto() {
-        return OfferDto.builder()
+    private JobOfferDto secondOfferDto() {
+        return JobOfferDto.builder()
                 .companyName("HARMAN Connected Services")
                 .jobPosition("Junior Java SE Developer for Automotive")
                 .salary("7k - 10k PLN")

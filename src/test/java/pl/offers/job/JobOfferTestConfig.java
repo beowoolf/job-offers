@@ -6,16 +6,16 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class JobOfferTestConfig {
 
-    private RestClient restClientImpl(String uri) {
-        return new RestClient(uri, restTemplateImpl());
+    private RestClient restClient(String uri) {
+        return new RestClient(uri, restTemplate());
     }
 
-    private RestTemplate restTemplateImpl() {
+    private RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-    public OfferClient remoteOfferClientTestImpl(String uri) {
-        return new OfferClient(restClientImpl(uri));
+    public OfferClient remoteOfferClientTest(String uri) {
+        return new OfferClient(restClient(uri));
     }
 
 }

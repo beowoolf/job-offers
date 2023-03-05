@@ -1,22 +1,23 @@
 package pl.offers.job;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
-@Setter
 @AllArgsConstructor
-public class OfferDto {
+@NoArgsConstructor
+@Data
+@Builder
+public class JobOfferDto {
 
-    @JsonProperty("id")
-    private Long id;
-    @JsonProperty("companyName")
+    @JsonIgnore
+    private String id;
+    @JsonProperty("company")
     private String companyName;
-    @JsonProperty("jobPosition")
+    @JsonProperty("title")
     private String jobPosition;
     @JsonProperty("salary")
     private String salary;

@@ -18,26 +18,26 @@ public class OfferClientTests {
 
     @Test
     public void should_return_offers_list() {
-        //GIVEN
+        //given
         RestClient restClient = Mockito.mock(RestClient.class);
-        when(restClient.callGetMethod(ArgumentMatchers.<ParameterizedTypeReference<List<OfferDto>>>any()))
-                .thenReturn(new ResponseEntity<>(Collections.singletonList(new OfferDto()), HttpStatus.ACCEPTED));
+        when(restClient.callGetMethod(ArgumentMatchers.<ParameterizedTypeReference<List<JobOfferDto>>>any()))
+                .thenReturn(new ResponseEntity<>(Collections.singletonList(new JobOfferDto()), HttpStatus.ACCEPTED));
         OfferClient offerClient = new OfferClient(restClient);
-        //WHEN
-        List<OfferDto> offers = offerClient.getOffers();
-        //THEN
+        //when
+        List<JobOfferDto> offers = offerClient.getOffers();
+        //then
         assertThat(offers.size()).isEqualTo(1);
     }
 
     @Test
     public void should_throw_OfferNotFoundException_when_return_list_is_empty() {
-        //GIVEN
+        //given
         RestClient restClient = Mockito.mock(RestClient.class);
-        when(restClient.callGetMethod(ArgumentMatchers.<ParameterizedTypeReference<List<OfferDto>>>any()))
+        when(restClient.callGetMethod(ArgumentMatchers.<ParameterizedTypeReference<List<JobOfferDto>>>any()))
                 .thenReturn(new ResponseEntity<>(Collections.emptyList(), HttpStatus.ACCEPTED));
         OfferClient offerClient = new OfferClient(restClient);
-        //WHEN THEN
-        assertThrows(OfferNotFoundException.class, offerClient::getOffers);
+        //when //then
+        assertThrows(JobOfferNotFoundException.class, offerClient::getOffers);
     }
 
 }

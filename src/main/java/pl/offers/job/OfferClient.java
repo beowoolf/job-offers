@@ -14,14 +14,14 @@ public class OfferClient implements RemoteOfferClient {
 
     private final RestClient restClient;
 
-    public List<OfferDto> getOffers() {
-        List<OfferDto> offers;
+    public List<JobOfferDto> getOffers() {
+        List<JobOfferDto> offers;
         try {
-            ResponseEntity<List<OfferDto>> responseEntity = restClient.callGetMethod(new ParameterizedTypeReference<List<OfferDto>>() {
+            ResponseEntity<List<JobOfferDto>> responseEntity = restClient.callGetMethod(new ParameterizedTypeReference<List<JobOfferDto>>() {
             });
             offers = responseEntity.getBody();
             if (offers != null && offers.isEmpty()) {
-                throw new OfferNotFoundException("There are no offers");
+                throw new JobOfferNotFoundException("There are no offers");
             }
         } catch (RestClientException e) {
             throw new HttpClientException(e.getMessage());
