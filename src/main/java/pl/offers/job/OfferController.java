@@ -1,6 +1,6 @@
 package pl.offers.job;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,11 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
+@RequestMapping
 public class OfferController {
 
-    private OfferService offerService;
+    private final OfferService offerService;
 
     @GetMapping("/offers")
     public ResponseEntity<List<OfferDto>> getOffers() {

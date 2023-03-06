@@ -10,18 +10,18 @@ public class JobOffersConfig {
     private final String getOfferUrlEndpoint = "/offers";
 
     @Bean
-    protected OfferUrlConfig offerUrlConfigImpl() {
+    protected OfferUrlConfig offerUrlConfig() {
         return new OfferUrlConfig();
     }
 
     @Bean
-    protected RestTemplate restTemplateImpl() {
+    protected RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
     @Bean
-    protected RestClient restClientImpl() {
-        return new RestClient(offerUrlConfigImpl().getUrl() + getOfferUrlEndpoint, restTemplateImpl());
+    protected RestClient restClient() {
+        return new RestClient(offerUrlConfig().getUrl() + getOfferUrlEndpoint, restTemplate());
     }
 
 }

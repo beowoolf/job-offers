@@ -1,15 +1,13 @@
 package pl.offers.job;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @Getter
 @ToString
 @EqualsAndHashCode
+@Builder
 public class OfferErrorResponse {
 
     private String message;

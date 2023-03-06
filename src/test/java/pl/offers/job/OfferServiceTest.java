@@ -20,7 +20,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_offer_list() {
         //given
-        when(offerRepository.getAllOffers()).thenReturn(Collections.singletonList(returnOneOffer()));
+        when(offerRepository.findAll()).thenReturn(Collections.singletonList(returnOneOffer()));
         //when
         List<OfferDto> offers = offerService.getOffers();
         //then
@@ -30,7 +30,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_empty_list_when_there_is_no_offers() {
         //given
-        when(offerRepository.getAllOffers()).thenReturn(Collections.emptyList());
+        when(offerRepository.findAll()).thenReturn(Collections.emptyList());
         //when
         List<OfferDto> offers = offerService.getOffers();
         //then
@@ -40,7 +40,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_offer_with_given_offer_id() {
         //given
-        when(offerRepository.getOfferById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(returnOneOffer()));
+        when(offerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(returnOneOffer()));
         //when
         OfferDto offer = offerService.getOfferById(String.valueOf(ArgumentMatchers.anyLong()));
         //then
@@ -50,7 +50,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_null_when_there_is_no_offer_with_given_id() {
         //given
-        when(offerRepository.getOfferById(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
+        when(offerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
         //when
         OfferDto offer = offerService.getOfferById(String.valueOf(ArgumentMatchers.anyLong()));
         //then
@@ -76,7 +76,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void return_offer_with_all_fields_not_null_when_offer_is_updating() {
         //given
-        when(offerRepository.createOrUpdateOffer(returnOneOffer())).thenReturn(returnOneOffer());
+        when(offerRepository.save(returnOneOffer())).thenReturn(returnOneOffer());
         //when
         OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(returnOneOffer()));
         //then
@@ -86,7 +86,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void return_offer_without_id_when_offer_is_creating() {
         //given
-        when(offerRepository.createOrUpdateOffer(returnOneOfferWithoutId())).thenReturn(returnOneOfferWithoutId());
+        when(offerRepository.save(returnOneOfferWithoutId())).thenReturn(returnOneOfferWithoutId());
         //when
         OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(returnOneOfferWithoutId()));
         //then

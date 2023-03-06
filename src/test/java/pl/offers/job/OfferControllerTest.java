@@ -12,7 +12,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,7 +60,11 @@ public class OfferControllerTest implements SampleOfferDto {
     public void should_return_status_not_found_when_there_is_not_offer_with_given_id_while_get_method() throws Exception {
         //given
         int offerId = 500;
-        OfferErrorResponse offerErrorResponse = new OfferErrorResponse("There is no offer with id: " + offerId, new Date().toString(), HttpStatus.NOT_FOUND);
+        OfferErrorResponse offerErrorResponse = OfferErrorResponse.builder()
+                .message("There is no offer with id: " + offerId)
+                .timestamp(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)))
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .build();
         String errorResponse = objectMapper.writeValueAsString(offerErrorResponse);
         //when
         MvcResult mvcResult = mockMvc.perform(get("/offers/" + offerId)).andExpect(status().isNotFound()).andReturn();
@@ -71,7 +77,11 @@ public class OfferControllerTest implements SampleOfferDto {
     public void should_return_status_bad_request_when_given_id_is_not_a_number() throws Exception {
         //given
         String offerId = "s";
-        OfferErrorResponse offerErrorResponse = new OfferErrorResponse("Offer id isn't a number.", new Date().toString(), HttpStatus.BAD_REQUEST);
+        OfferErrorResponse offerErrorResponse = OfferErrorResponse.builder()
+                .message("Offer id isn't a number.")
+                .timestamp(LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)))
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
         String badRequestResponse = objectMapper.writeValueAsString(offerErrorResponse);
         //when
         MvcResult mvcResult = mockMvc.perform(get("/offers/" + offerId)).andExpect(status().isBadRequest()).andReturn();
