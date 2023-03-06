@@ -14,6 +14,9 @@ public interface OfferRepository extends Repository<Offer, Long> {
 
     Offer save(Offer offer);
 
-    List<Offer> insert(List<Offer> offers);
+    default List<Offer> saveAll(List<Offer> offers) {
+        offers.forEach(this::save);
+        return offers;
+    }
 
 }

@@ -20,7 +20,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_offer_list() {
         //given
-        when(offerRepository.findAll()).thenReturn(Collections.singletonList(returnOneOffer()));
+        when(offerRepository.findAll()).thenReturn(Collections.singletonList(firstOfferWithId()));
         //when
         List<OfferDto> offers = offerService.getOffers();
         //then
@@ -40,7 +40,7 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void should_return_offer_with_given_offer_id() {
         //given
-        when(offerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(returnOneOffer()));
+        when(offerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(firstOfferWithId()));
         //when
         OfferDto offer = offerService.getOfferById(String.valueOf(ArgumentMatchers.anyLong()));
         //then
@@ -76,9 +76,9 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void return_offer_with_all_fields_not_null_when_offer_is_updating() {
         //given
-        when(offerRepository.save(returnOneOffer())).thenReturn(returnOneOffer());
+        when(offerRepository.save(firstOfferWithId())).thenReturn(firstOfferWithId());
         //when
-        OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(returnOneOffer()));
+        OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(firstOfferWithId()));
         //then
         assertThat(offer).isNotNull().hasNoNullFieldsOrProperties();
     }
@@ -86,9 +86,9 @@ public class OfferServiceTest implements SampleOffer {
     @Test
     public void return_offer_without_id_when_offer_is_creating() {
         //given
-        when(offerRepository.save(returnOneOfferWithoutId())).thenReturn(returnOneOfferWithoutId());
+        when(offerRepository.save(returnFirstOfferWithoutId())).thenReturn(returnFirstOfferWithoutId());
         //when
-        OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(returnOneOfferWithoutId()));
+        OfferDto offer = offerService.createOrUpdateOffer(OfferMapper.mapToOfferDto(returnFirstOfferWithoutId()));
         //then
         assertThat(offer).isNotNull().hasFieldOrPropertyWithValue("id", null);
     }

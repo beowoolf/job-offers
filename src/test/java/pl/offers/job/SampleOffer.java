@@ -2,7 +2,7 @@ package pl.offers.job;
 
 public interface SampleOffer {
 
-    default Offer returnOneOffer() {
+    default Offer firstOfferWithId() {
         return Offer.builder()
                 .id(1L)
                 .companyName("HARMAN Connected Services")
@@ -12,7 +12,17 @@ public interface SampleOffer {
                 .build();
     }
 
-    default Offer returnOneOfferWithoutId() {
+    default Offer secondOfferWithId() {
+        return Offer.builder()
+                .id(2L)
+                .companyName("S2Innovation Sp. z o. o.")
+                .jobPosition("Junior Remote Java Developer")
+                .salary("4k - 8k PLN")
+                .offerUrl("https://nofluffjobs.com/pl/job/junior-remote-java-developer-s2innovation-krakow-stddogtj")
+                .build();
+    }
+
+    default Offer returnFirstOfferWithoutId() {
         return Offer.builder()
                 .id(null)
                 .companyName("HARMAN Connected Services")
