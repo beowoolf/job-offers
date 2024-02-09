@@ -30,60 +30,54 @@ public class JobUrlDuplicateErrorIntegrationTest extends BaseIntegrationTest {
         // step 1
         // given
         String jobToCreateJson = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}
                 """;
         // when
         ResultActions perform = mockMvc.perform(post("/jobs")

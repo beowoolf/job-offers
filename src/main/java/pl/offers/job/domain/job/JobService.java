@@ -13,15 +13,25 @@ public class JobService {
 
     List<Job> fetchAllJobsAndSaveAllIfNotExists() {
         List<Job> jobOffers = fetchJobs();
-        final List<Job> offers = filterNotExistingOffers(jobOffers);
-        return jobRepository.saveAll(offers);
+        List<Job> offers = filterNotExistingOffers(jobOffers);
+        List<Job> uniqueOffers = filterUniqueUrls(offers);
+        return jobRepository.saveAll(uniqueOffers);
     }
 
     private List<Job> fetchJobs() {
         return jobOfferFetcher.fetchJobs()
+                .getList()
                 .stream()
                 .map(JobMapper::mapFromJobResponseToJob)
                 .toList();
+    }
+
+    private List<Job> filterUniqueUrls(List<Job> jobs) {
+        return jobs.stream()
+                .collect(Collectors.toMap(Job::getUrl, job -> job, (existing, replacement) -> existing))
+                .values()
+                .stream()
+                .collect(Collectors.toList());
     }
 
     private List<Job> filterNotExistingOffers(List<Job> jobOffers) {

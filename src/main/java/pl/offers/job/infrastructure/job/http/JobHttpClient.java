@@ -9,9 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.offers.job.domain.job.JobFetchable;
-import pl.offers.job.domain.job.dto.JobResponse;
-
-import java.util.List;
+import pl.offers.job.domain.job.dto.JobsResponse;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -22,17 +20,17 @@ public class JobHttpClient implements JobFetchable {
     private final int port;
 
     @Override
-    public List<JobResponse> fetchJobs() {
+    public JobsResponse fetchJobs() {
         log.info("Started fetching jobs using http client");
         HttpHeaders headers = new HttpHeaders();
         final HttpEntity<HttpHeaders> requestEntity = new HttpEntity<>(headers);
         try {
-            String urlForService = getUrlForService("/api/offers");
+            String urlForService = getUrlForService("/jobs/jjit/?refresh=1");
             final String url = UriComponentsBuilder.fromHttpUrl(urlForService).toUriString();
-            ResponseEntity<List<JobResponse>> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
+            ResponseEntity<JobsResponse> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity,
                     new ParameterizedTypeReference<>() {
                     });
-            final List<JobResponse> body = response.getBody();
+            final JobsResponse body = response.getBody();
             if (body == null) {
                 log.error("Response Body was null");
                 throw new ResponseStatusException(HttpStatus.NO_CONTENT);

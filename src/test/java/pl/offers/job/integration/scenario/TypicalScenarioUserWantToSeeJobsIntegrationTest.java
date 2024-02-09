@@ -51,7 +51,7 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
     public void user_want_to_see_offers_but_have_to_be_logged_in_and_external_server_should_have_some_offers() throws Exception {
         // step 1: there are no offers in external HTTP server
         // given
-        String externalEndpointUrl = "/api/offers";
+        String externalEndpointUrl = "/jobs/jjit/?refresh=1";
         // when && then
         wireMockServer.stubFor(WireMock.get(externalEndpointUrl)
                 .willReturn(WireMock.aResponse()
@@ -372,60 +372,54 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         //step 16: user made POST /jobs with header “Authorization: Bearer AAAA.BBBB.CCC” and offer as body and system returned CREATED(201) with saved offer
         // given
         String jobToCreateJson = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "http://gamesture.com/offers/backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}
                 """;
         // when
         ResultActions performPostJobsWithOneJob = mockMvc.perform(post(jobsUrl)
@@ -444,29 +438,21 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         JobResponseDto parsedCreatedJobJson = objectMapper.readValue(createdJobJson, JobResponseDto.class);
         String id = parsedCreatedJobJson.getId();
         assertAll(
-                () -> assertThat(parsedCreatedJobJson.getAddressText()).isEqualTo(parsedJobToCreate.getAddressText()),
                 () -> assertThat(parsedCreatedJobJson.getCity()).isEqualTo(parsedJobToCreate.getCity()),
-                () -> assertThat(parsedCreatedJobJson.getCompanyLogoUrl()).isEqualTo(parsedJobToCreate.getCompanyLogoUrl()),
+                () -> assertThat(parsedCreatedJobJson.getCompanyLogoUrl()).isEqualTo(parsedJobToCreate.getCompanyLogoThumbUrl()),
                 () -> assertThat(parsedCreatedJobJson.getCompanyName()).isEqualTo(parsedJobToCreate.getCompanyName()),
-                () -> assertThat(parsedCreatedJobJson.getCompanySize()).isEqualTo(parsedJobToCreate.getCompanySize()),
-                () -> assertThat(parsedCreatedJobJson.getCompanyUrl()).isEqualTo(parsedJobToCreate.getCompanyUrl()),
-                () -> assertThat(parsedCreatedJobJson.getCountryCode()).isEqualTo(parsedJobToCreate.getCountryCode()),
-                () -> assertThat(parsedCreatedJobJson.getDisplayOffer()).isEqualTo(parsedJobToCreate.getDisplayOffer()),
                 () -> assertThat(parsedCreatedJobJson.getEmploymentTypes()).isEqualTo(parsedJobToCreate.getEmploymentTypes()),
                 () -> assertThat(parsedCreatedJobJson.getExperienceLevel()).isEqualTo(parsedJobToCreate.getExperienceLevel()),
                 () -> assertThat(parsedCreatedJobJson.getLatitude()).isEqualTo(parsedJobToCreate.getLatitude()),
                 () -> assertThat(parsedCreatedJobJson.getLongitude()).isEqualTo(parsedJobToCreate.getLongitude()),
-                () -> assertThat(parsedCreatedJobJson.getMarkerIcon()).isEqualTo(parsedJobToCreate.getMarkerIcon()),
                 () -> assertThat(parsedCreatedJobJson.getMultilocation()).isEqualTo(parsedJobToCreate.getMultilocation()),
                 () -> assertThat(parsedCreatedJobJson.getOpenToHireUkrainians()).isEqualTo(parsedJobToCreate.getOpenToHireUkrainians()),
                 () -> assertThat(parsedCreatedJobJson.getPublishedAt()).isEqualTo(parsedJobToCreate.getPublishedAt()),
-                () -> assertThat(parsedCreatedJobJson.getRemote()).isEqualTo(parsedJobToCreate.getRemote()),
                 () -> assertThat(parsedCreatedJobJson.getRemoteInterview()).isEqualTo(parsedJobToCreate.getRemoteInterview()),
                 () -> assertThat(parsedCreatedJobJson.getSkills()).isEqualTo(parsedJobToCreate.getSkills()),
                 () -> assertThat(parsedCreatedJobJson.getStreet()).isEqualTo(parsedJobToCreate.getStreet()),
                 () -> assertThat(parsedCreatedJobJson.getTitle()).isEqualTo(parsedJobToCreate.getTitle()),
-                () -> assertThat(parsedCreatedJobJson.getUrl()).isEqualTo(parsedJobToCreate.getId()),
-                () -> assertThat(parsedCreatedJobJson.getWayOfApply()).isEqualTo(parsedJobToCreate.getWayOfApply()),
+                () -> assertThat(parsedCreatedJobJson.getUrl()).isEqualTo(parsedJobToCreate.getSlug()),
                 () -> assertThat(parsedCreatedJobJson.getWorkplaceType()).isEqualTo(parsedJobToCreate.getWorkplaceType())
         );
 

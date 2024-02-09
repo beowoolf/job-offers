@@ -41,7 +41,7 @@ public class InMemoryJobRepository implements JobRepository {
     @Override
     public <S extends Job> S save(S entity) {
         if (database.values().stream().anyMatch(job -> job.getUrl().equals(entity.getUrl())))
-            throw new DuplicateKeyException(String.format("Job with url [%s] already exists", entity.getUrl()));
+            throw new DuplicateKeyException(String.format("Job with slug [%s] already exists", entity.getUrl()));
         UUID id = UUID.randomUUID();
         Job job = new Job(
                 id.toString(),

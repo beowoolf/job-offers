@@ -9,6 +9,7 @@ import org.springframework.dao.DuplicateKeyException;
 import pl.offers.job.domain.job.dto.JobRequestDto;
 import pl.offers.job.domain.job.dto.JobResponse;
 import pl.offers.job.domain.job.dto.JobResponseDto;
+import pl.offers.job.domain.job.dto.JobsResponse;
 
 import java.util.List;
 
@@ -28,153 +29,142 @@ public class JobFacadeTest {
         List<JobResponseDto> result = jobFacade.fetchAllJobsAndSaveAllIfNotExists();
 
         // then
-        assertThat(result).hasSize(6);
+        assertThat(result).hasSize(4);
     }
 
     @Test
     public void should_save_only_2_jobs_when_repository_had_4_added_with_job_urls() throws JsonProcessingException {
         // given
-        String json1 = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "gamesture-sp-z-o-o-backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }""";
+		String json1 = """
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobResponse parsedJson11 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson11.setId(parsedJson11.getId() + "1");
+        parsedJson11.setSlug(parsedJson11.getSlug() + "1");
         JobResponse parsedJson12 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson12.setId(parsedJson12.getId() + "2");
+        parsedJson12.setSlug(parsedJson12.getSlug() + "2");
         JobResponse parsedJson13 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson13.setId(parsedJson13.getId() + "3");
+        parsedJson13.setSlug(parsedJson13.getSlug() + "3");
         JobResponse parsedJson14 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson14.setId(parsedJson14.getId() + "4");
+        parsedJson14.setSlug(parsedJson14.getSlug() + "4");
         JobResponse parsedJson15 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson15.setId(parsedJson15.getId() + "5");
+        parsedJson15.setSlug(parsedJson15.getSlug() + "5");
         JobResponse parsedJson16 = objectMapper.readValue(json1, new TypeReference<>() {
         });
-        parsedJson16.setId(parsedJson16.getId() + "6");
-        String json2 = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "https://justjoin.it/offers/gamesture-sp-z-o-o-backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }""";
+        parsedJson16.setSlug(parsedJson16.getSlug() + "6");
+		String json2 = """
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobRequestDto parsedJson21 = objectMapper.readValue(json2, new TypeReference<>() {
         });
-        parsedJson21.setId(parsedJson21.getId() + "1");
+        parsedJson21.setSlug(parsedJson21.getSlug() + "1");
         JobRequestDto parsedJson22 = objectMapper.readValue(json2, new TypeReference<>() {
         });
-        parsedJson22.setId(parsedJson22.getId() + "2");
+        parsedJson22.setSlug(parsedJson22.getSlug() + "2");
         JobRequestDto parsedJson23 = objectMapper.readValue(json2, new TypeReference<>() {
         });
-        parsedJson23.setId(parsedJson23.getId() + "3");
+        parsedJson23.setSlug(parsedJson23.getSlug() + "3");
         JobRequestDto parsedJson24 = objectMapper.readValue(json2, new TypeReference<>() {
         });
-        parsedJson24.setId(parsedJson24.getId() + "4");
-        JobFacade jobFacade = new JobFacadeTestConfiguration(
+        parsedJson24.setSlug(parsedJson24.getSlug() + "4");
+        JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(
+                true,
                 List.of(
                         parsedJson11,
                         parsedJson12,
@@ -182,7 +172,7 @@ public class JobFacadeTest {
                         parsedJson14,
                         parsedJson15,
                         parsedJson16
-                )
+                ))
         ).jobFacadeForTests();
         jobFacade.saveJob(parsedJson21);
         jobFacade.saveJob(parsedJson22);
@@ -198,80 +188,74 @@ public class JobFacadeTest {
                         response.get(0).getUrl(),
                         response.get(1).getUrl()
                 )
-        ).containsExactlyInAnyOrder("https://justjoin.it/offers/" + parsedJson15.getId(), "https://justjoin.it/offers/" + parsedJson16.getId());
+        ).containsExactlyInAnyOrder("https://justjoin.it/offers/" + parsedJson11.getSlug(), "https://justjoin.it/offers/" + parsedJson12.getSlug());
     }
 
     @Test
     public void should_save_4_jobs_when_there_are_no_jobs_in_database() throws JsonProcessingException {
         // given
         String json = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "http://gamesture.com/offers/gamesture-sp-z-o-o-backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }""";
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobRequestDto parsedJson1 = objectMapper.readValue(json, new TypeReference<>() {
         });
-        parsedJson1.setId(parsedJson1.getId() + "1");
+        parsedJson1.setSlug(parsedJson1.getSlug() + "1");
         JobRequestDto parsedJson2 = objectMapper.readValue(json, new TypeReference<>() {
         });
-        parsedJson2.setId(parsedJson2.getId() + "2");
+        parsedJson2.setSlug(parsedJson2.getSlug() + "2");
         JobRequestDto parsedJson3 = objectMapper.readValue(json, new TypeReference<>() {
         });
-        parsedJson3.setId(parsedJson3.getId() + "3");
+        parsedJson3.setSlug(parsedJson3.getSlug() + "3");
         JobRequestDto parsedJson4 = objectMapper.readValue(json, new TypeReference<>() {
         });
-        parsedJson4.setId(parsedJson4.getId() + "4");
-        JobFacade jobFacade = new JobFacadeTestConfiguration(List.of()).jobFacadeForTests();
+        parsedJson4.setSlug(parsedJson4.getSlug() + "4");
+        JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();
 
         // when
         jobFacade.saveJob(parsedJson1);
@@ -287,63 +271,57 @@ public class JobFacadeTest {
     public void should_find_job_by_id_when_job_was_saved() throws JsonProcessingException {
         // given
         String json = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "http://gamesture.com/offers/gamesture-sp-z-o-o-backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }""";
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobRequestDto parsedJson = objectMapper.readValue(json, new TypeReference<>() {
         });
-        JobFacade jobFacade = new JobFacadeTestConfiguration(List.of()).jobFacadeForTests();
+        JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();
         JobResponseDto jobResponseDto = jobFacade.saveJob(parsedJson);
         // when
         JobResponseDto jobById = jobFacade.findJobById(jobResponseDto.getId());
@@ -382,7 +360,7 @@ public class JobFacadeTest {
     @Test
     public void should_throw_not_found_exception_when_job_not_found() {
         // given
-        JobFacade jobFacade = new JobFacadeTestConfiguration(List.of()).jobFacadeForTests();
+        JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();
         assertThat(jobFacade.findAllJobs()).isEmpty();
 
         // when
@@ -398,121 +376,109 @@ public class JobFacadeTest {
     public void should_throw_duplicate_key_exception_when_with_job_url_exists() throws JsonProcessingException {
         // given
         String json = """
-                {
-                    "title": "Backend Developer",
-                    "street": "Centrum",
-                    "city": "Wrocław",
-                    "country_code": "PL",
-                    "address_text": "Centrum, Wrocław",
-                    "marker_icon": "go",
-                    "workplace_type": "remote",
-                    "company_name": "Gamesture Sp. z o.o.",
-                    "company_url": "http://gamesture.com",
-                    "company_size": "80",
-                    "experience_level": "mid",
-                    "latitude": "51.1078852",
-                    "longitude": "17.0385376",
-                    "published_at": "2023-04-19T11:00:14.909Z",
-                    "remote_interview": true,
-                    "open_to_hire_ukrainians": true,
-                    "id": "http://gamesture.com/offers/gamesture-sp-z-o-o-backend-developer-wroclaw",
-                    "display_offer": false,
-                    "employment_types": [
-                        {
-                            "type": "permanent",
-                            "salary": {
-                                "from": 8000,
-                                "to": 16000,
-                                "currency": "pln"
-                            }
-                        }
-                    ],
-                    "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                    "skills": [
-                        {
-                            "name": "Python",
-                            "level": 1
-                        },
-                        {
-                            "name": "SQL",
-                            "level": 3
-                        },
-                        {
-                            "name": "Golang",
-                            "level": 3
-                        }
-                    ],
-                    "remote": true,
-                    "multilocation": [
-                        {
-                            "city": "Wrocław",
-                            "street": "Centrum",
-                            "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                        }
-                    ],
-                    "way_of_apply": "redirect"
-                }""";
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobRequestDto parsedJson = objectMapper.readValue(json, new TypeReference<>() {
         });
-        JobFacade jobFacade = new JobFacadeTestConfiguration(List.of()).jobFacadeForTests();
+        JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();
         JobResponseDto jobResponseDto = jobFacade.saveJob(parsedJson);
         String savedId = jobResponseDto.getId();
         assertThat(jobFacade.findJobById(savedId).getId()).isEqualTo(savedId);
         String json2 = """
                 {
-                	"title": "Backend Developer",
-                	"street": "Centrum",
-                	"city": "Katowice",
-                	"country_code": "PL",
-                	"address_text": "Centrum, Katowice",
-                	"marker_icon": "go",
-                	"workplace_type": "remote",
-                	"company_name": "Gamesture Sp. z o.o.",
-                	"company_url": "http://gamesture.com",
-                	"company_size": "80",
-                	"experience_level": "mid",
-                	"latitude": "50.2648919",
-                	"longitude": "19.0237815",
-                	"published_at": "2023-04-19T11:00:14.909Z",
-                	"remote_interview": true,
-                	"open_to_hire_ukrainians": true,
-                	"id": "http://gamesture.com/offers/gamesture-sp-z-o-o-backend-developer-wroclaw",
-                	"display_offer": false,
-                	"employment_types": [
-                		{
-                			"type": "permanent",
-                			"salary": {
-                				"from": 8000,
-                				"to": 16000,
-                				"currency": "pln"
-                			}
-                		}
-                	],
-                	"company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/9f1d514b22d4560f196b98981f9752c5d5cc44ea.png?1680604189",
-                	"skills": [
-                		{
-                			"name": "Python",
-                			"level": 1
-                		},
-                		{
-                			"name": "SQL",
-                			"level": 3
-                		},
-                		{
-                			"name": "Golang",
-                			"level": 3
-                		}
-                	],
-                	"remote": true,
-                	"multilocation": [
-                		{
-                			"city": "Katowice",
-                			"street": "Centrum",
-                			"slug": "gamesture-sp-z-o-o-backend-developer-katowice"
-                		}
-                	],
-                	"way_of_apply": "redirect"
-                }""";
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		}""";
         JobRequestDto parsedJson2 = objectMapper.readValue(json2, new TypeReference<>() {
         });
         // when
@@ -521,7 +487,7 @@ public class JobFacadeTest {
         // then
         AssertionsForClassTypes.assertThat(thrown)
                 .isInstanceOf(DuplicateKeyException.class)
-                .hasMessage("Job with url [http://gamesture.com/offers/gamesture-sp-z-o-o-backend-developer-wroclaw] already exists");
+                .hasMessage("Job with slug [leverx-integration-architect-cig] already exists");
     }
 
 }

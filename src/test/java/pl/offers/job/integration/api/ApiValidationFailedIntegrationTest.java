@@ -46,49 +46,39 @@ public class ApiValidationFailedIntegrationTest extends BaseIntegrationTest {
         // given
         String jobToCreateJson = """
                 {
-                    "title": "",
-                    "street": "",
-                    "city": "",
-                    "country_code": "",
-                    "address_text": "",
-                    "marker_icon": "",
-                    "workplace_type": "",
-                    "company_name": "",
-                    "company_url": "",
-                    "company_size": "",
-                    "experience_level": "",
-                    "latitude": "",
-                    "longitude": "",
-                    "published_at": "",
-                    "id": "",
-                    "employment_types": [
-                        {
-                            "type": "",
-                            "salary": {
-                                "currency": ""
-                            }
-                        }
-                    ],
-                    "company_logo_url": "",
-                    "skills": [
-                        {
-                            "name": ""
-                        },
-                        {
-                            "name": ""
-                        },
-                        {
-                            "name": ""
-                        }
-                    ],
-                    "multilocation": [
-                        {
-                            "city": "",
-                            "street": "",
-                            "slug": ""
-                        }
-                    ],
-                    "way_of_apply": ""
+                 	"success": true,
+                 	"list": [
+                 		{
+                 			"slug": "",
+                 			"title": "",
+                 			"requiredSkills": [
+                 				""
+                 			],
+                 			"workplaceType": "",
+                 			"workingTime": "",
+                 			"experienceLevel": "",
+                 			"employmentTypes": [
+                 				{
+                 					"type": "",
+                 					"currency": ""
+                 				}
+                 			],
+                 			"multilocation": [
+                 				{
+                 					"city": "",
+                 					"slug": "",
+                 					"street": ""
+                 				}
+                 			],
+                 			"city": "",
+                 			"street": "",
+                 			"latitude": "",
+                 			"longitude": "",
+                 			"companyName": "",
+                 			"companyLogoThumbUrl": "",
+                 			"publishedAt": ""
+                 		}
+                    ]
                 }
                 """;
         // when
@@ -102,26 +92,32 @@ public class ApiValidationFailedIntegrationTest extends BaseIntegrationTest {
         ApiValidationErrorDto result = objectMapper.readValue(json, ApiValidationErrorDto.class);
         assertThat(result.messages()).containsExactlyInAnyOrder(
                 "title must not be empty",
-                "company_name must not be empty",
+                "title must not be null",
+                "companyName must not be empty",
+                "companyName must not be null",
                 "latitude must not be empty",
-                "address_text must not be empty",
-                "company_logo_url must not be empty",
-                "company_url must not be empty",
-                "experience_level must not be empty",
-                "published_at must not be empty",
-                "marker_icon must not be empty",
-                "company_size must not be empty",
-                "display_offer must not be null",
-                "way_of_apply must not be empty",
-                "id must not be empty",
-                "workplace_type must not be empty",
-                "remote_interview must not be null",
-                "city must not be empty",
-                "remote must not be null",
+                "latitude must not be null",
                 "longitude must not be empty",
-                "open_to_hire_ukrainians must not be null",
+                "longitude must not be null",
+                "experienceLevel must not be empty",
+                "experienceLevel must not be null",
+                "publishedAt must not be empty",
+                "publishedAt must not be null",
+                "requiredSkills must not be null",
+                "id must not be empty",
+                "id must not be null",
+                "city must not be empty",
+                "remoteInterview must not be null",
+                "openToHireUkrainians must not be null",
+                "companyLogoThumbUrl must not be empty",
+                "companyLogoThumbUrl must not be null",
+                "workplaceType must not be null",
+                "city must not be null",
                 "street must not be empty",
-                "country_code must not be empty");
+                "street must not be null",
+                "workplaceType must not be empty",
+                "workingTime must not be empty",
+                "workingTime must not be null");
     }
 
 }

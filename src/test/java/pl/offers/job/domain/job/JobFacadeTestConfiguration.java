@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.offers.job.domain.job.dto.JobResponse;
+import pl.offers.job.domain.job.dto.JobsResponse;
 
 import java.util.List;
 
@@ -14,315 +15,348 @@ public class JobFacadeTestConfiguration {
 
     JobFacadeTestConfiguration() throws JsonProcessingException {
         String json = """
-                [
-                    {
-                        "title": "Remote FullStack Developer",
-                        "street": "-",
-                        "city": "Poznań",
-                        "country_code": "PL",
-                        "address_text": "-, Poznań",
-                        "marker_icon": "javascript",
-                        "workplace_type": "remote",
-                        "company_name": "AppTailors",
-                        "company_url": "https://apptailors.co/",
-                        "company_size": "20",
-                        "experience_level": "mid",
-                        "latitude": "52.406374",
-                        "longitude": "16.9251681",
-                        "published_at": "2023-04-24T11:48:00.000Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": true,
-                        "id": "apptailors-remote-fullstack-developer",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "b2b",
-                                "salary": {
-                                    "from": 15800,
-                                    "to": 24500,
-                                    "currency": "pln"
-                                }
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/97e0666b935598058c4fd917127569fecfad9483.png?1682336861",
-                        "skills": [
-                            {
-                                "name": "CSS",
-                                "level": 3
-                            },
-                            {
-                                "name": "JavaScript",
-                                "level": 3
-                            },
-                            {
-                                "name": "React",
-                                "level": 4
-                            }
-                        ],
-                        "remote": true,
-                        "multilocation": [
-                            {
-                                "city": "Poznań",
-                                "street": "-",
-                                "slug": "apptailors-remote-fullstack-developer"
-                            }
-                        ],
-                        "way_of_apply": "redirect"
-                    },
-                    {
-                        "title": "Lead ELK Engineer",
-                        "street": "-",
-                        "city": "Wrocław",
-                        "country_code": "PL",
-                        "address_text": "-, Wrocław",
-                        "marker_icon": "other",
-                        "workplace_type": "remote",
-                        "company_name": "emagine Polska",
-                        "company_url": "http://www.emagine.pl",
-                        "company_size": "1400+",
-                        "experience_level": "mid",
-                        "latitude": "51.1078852",
-                        "longitude": "17.0385376",
-                        "published_at": "2023-04-24T10:14:00.000Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": false,
-                        "id": "emagine-polska-lead-elk-engineer-wroclaw",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "b2b",
-                                "salary": null
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/c3ecd36d6ed6672f642a4c4191cf8460fe273b47.jpg?1682331265",
-                        "skills": [
-                            {
-                                "name": "Elasticsearch",
-                                "level": 3
-                            },
-                            {
-                                "name": "ArcSight",
-                                "level": 3
-                            },
-                            {
-                                "name": "ELK Stack",
-                                "level": 3
-                            }
-                        ],
-                        "remote": true,
-                        "multilocation": [
-                            {
-                                "city": "Wrocław",
-                                "street": "-",
-                                "slug": "emagine-polska-lead-elk-engineer-wroclaw"
-                            }
-                        ],
-                        "way_of_apply": "form"
-                    },
-                    {
-                        "title": "CS Cloud Compliance Expert",
-                        "street": "City Center",
-                        "city": "Gdańsk",
-                        "country_code": "PL",
-                        "address_text": "City Center, Gdańsk",
-                        "marker_icon": "security",
-                        "workplace_type": "remote",
-                        "company_name": "emagine Polska",
-                        "company_url": "http://www.emagine.pl",
-                        "company_size": "1400+",
-                        "experience_level": "mid",
-                        "latitude": "54.3520252",
-                        "longitude": "18.6466384",
-                        "published_at": "2023-04-24T10:13:00.000Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": false,
-                        "id": "emagine-polska-cs-cloud-compliance-expert-gdansk",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "b2b",
-                                "salary": {
-                                    "from": 25200,
-                                    "to": 28560,
-                                    "currency": "pln"
-                                }
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/abfe3aabdcd4dec002c88d5e12a2cac98aa483bc.jpg?1682331219",
-                        "skills": [
-                            {
-                                "name": "Cloud",
-                                "level": 4
-                            }
-                        ],
-                        "remote": true,
-                        "multilocation": [
-                            {
-                                "city": "Gdańsk",
-                                "street": "City Center",
-                                "slug": "emagine-polska-cs-cloud-compliance-expert-gdansk"
-                            }
-                        ],
-                        "way_of_apply": "form"
-                    },
-                    {
-                        "title": "Analityk IT - Zespół Rozwoju IPKO Biznes",
-                        "street": "Centrum",
-                        "city": "Lublin",
-                        "country_code": "PL",
-                        "address_text": "Centrum, Lublin",
-                        "marker_icon": "analytics",
-                        "workplace_type": "partly_remote",
-                        "company_name": "PKO Bank Polski",
-                        "company_url": "https://www.pkobp.pl/kariera/",
-                        "company_size": "22000",
-                        "experience_level": "mid",
-                        "latitude": "51.2464536",
-                        "longitude": "22.5684463",
-                        "published_at": "2023-04-24T09:00:17.954Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": false,
-                        "id": "pko-bank-polski-analityk-it-zespol-rozwoju-ipko-biznes-lublin",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "permanent",
-                                "salary": null
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/d36e3b4e234984955d6960a05fad74a98e532298.png?1681460288",
-                        "skills": [
-                            {
-                                "name": "Analytics",
-                                "level": 4
-                            }
-                        ],
-                        "remote": false,
-                        "multilocation": [
-                            {
-                                "city": "Lublin",
-                                "street": "Centrum",
-                                "slug": "pko-bank-polski-analityk-it-zespol-rozwoju-ipko-biznes-lublin"
-                            }
-                        ],
-                        "way_of_apply": "redirect"
-                    },
-                    {
-                        "title": "Backend Developer",
-                        "street": "Centrum",
-                        "city": "Katowice",
-                        "country_code": "PL",
-                        "address_text": "Centrum, Katowice",
-                        "marker_icon": "go",
-                        "workplace_type": "remote",
-                        "company_name": "Gamesture Sp. z o.o.",
-                        "company_url": "http://gamesture.com",
-                        "company_size": "80",
-                        "experience_level": "mid",
-                        "latitude": "50.2648919",
-                        "longitude": "19.0237815",
-                        "published_at": "2023-04-19T11:00:14.909Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": true,
-                        "id": "gamesture-sp-z-o-o-backend-developer-katowice",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "permanent",
-                                "salary": {
-                                    "from": 8000,
-                                    "to": 16000,
-                                    "currency": "pln"
-                                }
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/9f1d514b22d4560f196b98981f9752c5d5cc44ea.png?1680604189",
-                        "skills": [
-                            {
-                                "name": "Python",
-                                "level": 1
-                            },
-                            {
-                                "name": "SQL",
-                                "level": 3
-                            },
-                            {
-                                "name": "Golang",
-                                "level": 3
-                            }
-                        ],
-                        "remote": true,
-                        "multilocation": [
-                            {
-                                "city": "Katowice",
-                                "street": "Centrum",
-                                "slug": "gamesture-sp-z-o-o-backend-developer-katowice"
-                            }
-                        ],
-                        "way_of_apply": "redirect"
-                    },
-                    {
-                        "title": "Backend Developer",
-                        "street": "Centrum",
-                        "city": "Wrocław",
-                        "country_code": "PL",
-                        "address_text": "Centrum, Wrocław",
-                        "marker_icon": "go",
-                        "workplace_type": "remote",
-                        "company_name": "Gamesture Sp. z o.o.",
-                        "company_url": "http://gamesture.com",
-                        "company_size": "80",
-                        "experience_level": "mid",
-                        "latitude": "51.1078852",
-                        "longitude": "17.0385376",
-                        "published_at": "2023-04-19T11:00:14.909Z",
-                        "remote_interview": true,
-                        "open_to_hire_ukrainians": true,
-                        "id": "gamesture-sp-z-o-o-backend-developer-wroclaw",
-                        "display_offer": false,
-                        "employment_types": [
-                            {
-                                "type": "permanent",
-                                "salary": {
-                                    "from": 8000,
-                                    "to": 16000,
-                                    "currency": "pln"
-                                }
-                            }
-                        ],
-                        "company_logo_url": "https://bucket.justjoin.it/offers/company_logos/thumb/4d9a5369b294d3b34782e26178c82a78836d3073.png?1680604238",
-                        "skills": [
-                            {
-                                "name": "Python",
-                                "level": 1
-                            },
-                            {
-                                "name": "SQL",
-                                "level": 3
-                            },
-                            {
-                                "name": "Golang",
-                                "level": 3
-                            }
-                        ],
-                        "remote": true,
-                        "multilocation": [
-                            {
-                                "city": "Wrocław",
-                                "street": "Centrum",
-                                "slug": "gamesture-sp-z-o-o-backend-developer-wroclaw"
-                            }
-                        ],
-                        "way_of_apply": "redirect"
-                    }
-                ]""";
-        List<JobResponse> parsedJson = objectMapper.readValue(json, new TypeReference<>() {
+                {
+                 	"success": true,
+                 	"list": [
+                 		{
+                 			"slug": "leverx-integration-architect-cig",
+                 			"title": "Integration Architect (CIG)",
+                 			"requiredSkills": [
+                 				"SAP"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "hybrid",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "usd",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 23,
+                 			"multilocation": [
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "leverx-integration-architect-cig",
+                 					"street": "Pilsudskiego 69, 50-019",
+                 					"latitude": 51.100532600000001,
+                 					"longitude": 17.0311415
+                 				}
+                 			],
+                 			"city": "Wroclaw",
+                 			"street": "Pilsudskiego 69, 50-019",
+                 			"latitude": "51.1005326",
+                 			"longitude": "17.0311415",
+                 			"remoteInterview": true,
+                 			"companyName": "LeverX",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                 			"publishedAt": "2024-01-31T09:00:00.000Z",
+                 			"openToHireUkrainians": true
+                 		},
+                 		{
+                 			"slug": "fujitsu-linux-engineer",
+                 			"title": "Linux Engineer",
+                 			"requiredSkills": [
+                 				"Red Hat",
+                 				"Linux",
+                 				"Ansible"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "remote",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": null,
+                 					"from": null,
+                 					"type": "permanent",
+                 					"to_chf": null,
+                 					"to_eur": null,
+                 					"to_gbp": null,
+                 					"to_pln": null,
+                 					"to_usd": null,
+                 					"currency": "pln",
+                 					"from_chf": null,
+                 					"from_eur": null,
+                 					"from_gbp": null,
+                 					"from_pln": null,
+                 					"from_usd": null
+                 				}
+                 			],
+                 			"categoryId": 13,
+                 			"multilocation": [
+                 				{
+                 					"city": "Łódź",
+                 					"slug": "fujitsu-linux-engineer",
+                 					"street": "Milionowa",
+                 					"latitude": 51.752020100000003,
+                 					"longitude": 19.492133299999999
+                 				},
+                 				{
+                 					"city": "Warszawa",
+                 					"slug": "fujitsu-linux-engineer-warszawa",
+                 					"street": "Centrum",
+                 					"latitude": 52.230209100000003,
+                 					"longitude": 21.0113922
+                 				},
+                 				{
+                 					"city": "Katowice",
+                 					"slug": "fujitsu-linux-engineer-katowice",
+                 					"street": "Centrum",
+                 					"latitude": 51.752020100000003,
+                 					"longitude": 19.492133299999999
+                 				},
+                 				{
+                 					"city": "Kraków",
+                 					"slug": "fujitsu-linux-engineer-krakow",
+                 					"street": "Centrum",
+                 					"latitude": 50.0591121,
+                 					"longitude": 19.9378922
+                 				},
+                 				{
+                 					"city": "Gdańsk",
+                 					"slug": "fujitsu-linux-engineer-gdansk",
+                 					"street": "Centrum",
+                 					"latitude": 54.3520252,
+                 					"longitude": 18.646638400000001
+                 				},
+                 				{
+                 					"city": "Poznań",
+                 					"slug": "fujitsu-linux-engineer-poznan",
+                 					"street": "Centrum",
+                 					"latitude": 52.406374,
+                 					"longitude": 16.9251681
+                 				},
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "fujitsu-linux-engineer-wroclaw",
+                 					"street": "Centrum",
+                 					"latitude": 51.107885199999998,
+                 					"longitude": 17.038537600000002
+                 				},
+                 				{
+                 					"city": "Zielona Góra",
+                 					"slug": "fujitsu-linux-engineer-zielona-gora",
+                 					"street": "Centrum",
+                 					"latitude": 51.935621400000002,
+                 					"longitude": 15.5061862
+                 				},
+                 				{
+                 					"city": "Bydgoszcz",
+                 					"slug": "fujitsu-linux-engineer-bydgoszcz",
+                 					"street": "Centrum",
+                 					"latitude": 53.123480399999998,
+                 					"longitude": 18.008437799999999
+                 				},
+                 				{
+                 					"city": "Rzeszów",
+                 					"slug": "fujitsu-linux-engineer-rzeszow",
+                 					"street": "Centrum",
+                 					"latitude": 50.041186699999997,
+                 					"longitude": 21.9991196
+                 				},
+                 				{
+                 					"city": "Toruń",
+                 					"slug": "fujitsu-linux-engineer-torun",
+                 					"street": "Centrum",
+                 					"latitude": 53.013790200000003,
+                 					"longitude": 18.598443700000001
+                 				}
+                 			],
+                 			"city": "Łódź",
+                 			"street": "Milionowa",
+                 			"latitude": "51.7520201",
+                 			"longitude": "19.4921333",
+                 			"remoteInterview": true,
+                 			"companyName": "Fujitsu",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/1c4a3f3ef88249e8709fbd8d4323287228c0aa70.jpg?1706020703",
+                 			"publishedAt": "2024-01-30T15:58:00.000Z",
+                 			"openToHireUkrainians": false
+                 		},
+                 		{
+                 			"slug": "prime-engineering-technical-analyst-with-sap-krakow",
+                 			"title": "Technical Analyst with SAP",
+                 			"requiredSkills": [
+                 				"SAP TR",
+                 				"SAP",
+                 				"SAP Cash Management",
+                 				"SAP FI",
+                 				"Java",
+                 				"SAP IHC / SAP APM"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "remote",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": 20000,
+                 					"from": 16000,
+                 					"type": "b2b",
+                 					"to_chf": 4275.46,
+                 					"to_eur": 4579.8400000000001,
+                 					"to_gbp": 3903.98,
+                 					"to_pln": "20000",
+                 					"to_usd": 4965.1400000000003,
+                 					"currency": "pln",
+                 					"from_chf": 3420.3679999999999,
+                 					"from_eur": 3663.8719999999998,
+                 					"from_gbp": 3123.1840000000002,
+                 					"from_pln": "16000",
+                 					"from_usd": 3972.1120000000001
+                 				}
+                 			],
+                 			"categoryId": 22,
+                 			"multilocation": [
+                 				{
+                 					"city": "Kraków",
+                 					"slug": "prime-engineering-technical-analyst-with-sap-krakow",
+                 					"street": "Centrum",
+                 					"latitude": 50.0591121,
+                 					"longitude": 19.9378922
+                 				},
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "prime-engineering-technical-analyst-with-sap-wroclaw",
+                 					"street": "Centrum",
+                 					"latitude": 51.107885199999998,
+                 					"longitude": 17.038537600000002
+                 				},
+                 				{
+                 					"city": "Gdańsk",
+                 					"slug": "prime-engineering-technical-analyst-with-sap-gdansk",
+                 					"street": "Centrum",
+                 					"latitude": 54.3520252,
+                 					"longitude": 18.646638400000001
+                 				},
+                 				{
+                 					"city": "Poznań",
+                 					"slug": "prime-engineering-technical-analyst-with-sap-poznan",
+                 					"street": "Centrum",
+                 					"latitude": 52.409363399999997,
+                 					"longitude": 16.931799099999999
+                 				},
+                 				{
+                 					"city": "Warszawa",
+                 					"slug": "prime-engineering-technical-analyst-with-sap",
+                 					"street": "Centrum",
+                 					"latitude": 52.230209100000003,
+                 					"longitude": 21.0113922
+                 				}
+                 			],
+                 			"city": "Kraków",
+                 			"street": "Centrum",
+                 			"latitude": "50.0591121",
+                 			"longitude": "19.9378922",
+                 			"remoteInterview": true,
+                 			"companyName": "Prime Engineering",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d82b9c0187e10636eb9f44e48c8db70feab6368e.png?1706627503",
+                 			"publishedAt": "2024-01-30T15:13:56.445Z",
+                 			"openToHireUkrainians": false
+                 		},
+                 		{
+                 			"slug": "prime-engineering-business-analyst-with-sap-krakow",
+                 			"title": "Business Analyst with SAP",
+                 			"requiredSkills": [
+                 				"SAP-IHC",
+                 				"SAP-FI",
+                 				"SAP-APM",
+                 				"procesy płatności",
+                 				"SAP Finance/Treasury",
+                 				"Java"
+                 			],
+                 			"niceToHaveSkills": null,
+                 			"workplaceType": "remote",
+                 			"workingTime": "full_time",
+                 			"experienceLevel": "mid",
+                 			"employmentTypes": [
+                 				{
+                 					"to": 20000,
+                 					"from": 16000,
+                 					"type": "b2b",
+                 					"to_chf": 4275.46,
+                 					"to_eur": 4579.8400000000001,
+                 					"to_gbp": 3903.98,
+                 					"to_pln": "20000",
+                 					"to_usd": 4965.1400000000003,
+                 					"currency": "pln",
+                 					"from_chf": 3420.3679999999999,
+                 					"from_eur": 3663.8719999999998,
+                 					"from_gbp": 3123.1840000000002,
+                 					"from_pln": "16000",
+                 					"from_usd": 3972.1120000000001
+                 				}
+                 			],
+                 			"categoryId": 22,
+                 			"multilocation": [
+                 				{
+                 					"city": "Kraków",
+                 					"slug": "prime-engineering-business-analyst-with-sap-krakow",
+                 					"street": "Centrum",
+                 					"latitude": 50.0591121,
+                 					"longitude": 19.9378922
+                 				},
+                 				{
+                 					"city": "Wroclaw",
+                 					"slug": "prime-engineering-business-analyst-with-sap-wroclaw",
+                 					"street": "Centrum",
+                 					"latitude": 51.107885199999998,
+                 					"longitude": 17.038537600000002
+                 				},
+                 				{
+                 					"city": "Gdańsk",
+                 					"slug": "prime-engineering-business-analyst-with-sap-gdansk",
+                 					"street": "Centrum",
+                 					"latitude": 54.3520252,
+                 					"longitude": 18.646638400000001
+                 				},
+                 				{
+                 					"city": "Poznań",
+                 					"slug": "prime-engineering-business-analyst-with-sap-poznan",
+                 					"street": "Centrum",
+                 					"latitude": 52.409363399999997,
+                 					"longitude": 16.931799099999999
+                 				},
+                 				{
+                 					"city": "Warszawa",
+                 					"slug": "prime-engineering-business-analyst-with-sap",
+                 					"street": "Centrum",
+                 					"latitude": 52.230209100000003,
+                 					"longitude": 21.0113922
+                 				}
+                 			],
+                 			"city": "Kraków",
+                 			"street": "Centrum",
+                 			"latitude": "50.0591121",
+                 			"longitude": "19.9378922",
+                 			"remoteInterview": true,
+                 			"companyName": "Prime Engineering",
+                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/2aa9eedaff2834aec65eec4e552c296e16fd2d9f.png?1706627530",
+                 			"publishedAt": "2024-01-30T15:13:49.295Z",
+                 			"openToHireUkrainians": false
+                 		}
+                    ]
+                }""";
+        JobsResponse parsedJson = objectMapper.readValue(json, new TypeReference<>() {
         });
         this.inMemoryFetcherTest = new InMemoryFetcherTestImpl(parsedJson);
         this.jobRepository = new InMemoryJobRepository();
     }
 
-    JobFacadeTestConfiguration(List<JobResponse> remoteClientJobs) {
+    JobFacadeTestConfiguration(JobsResponse remoteClientJobs) {
         this.inMemoryFetcherTest = new InMemoryFetcherTestImpl(remoteClientJobs);
         this.jobRepository = new InMemoryJobRepository();
     }

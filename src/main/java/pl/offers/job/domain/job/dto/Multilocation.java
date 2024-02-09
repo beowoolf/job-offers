@@ -16,5 +16,7 @@ public class Multilocation implements Serializable {
     private String city;
     private String street;
     private String slug;
+    private double latitude;
+    private double longitude;
 
 }

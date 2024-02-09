@@ -1,11 +1,9 @@
 package pl.offers.job.domain.job;
 
-import pl.offers.job.domain.job.dto.JobResponse;
-
-import java.util.List;
+import pl.offers.job.domain.job.dto.JobsResponse;
 
 public interface JobFetchable {
 
-    List<JobResponse> fetchJobs();
+    JobsResponse fetchJobs();
 
 }

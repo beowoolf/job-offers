@@ -1,19 +1,20 @@
 package pl.offers.job.domain.job;
 
 import pl.offers.job.domain.job.dto.JobResponse;
+import pl.offers.job.domain.job.dto.JobsResponse;
 
 import java.util.List;
 
 public class InMemoryFetcherTestImpl implements JobFetchable {
 
-    List<JobResponse> listOfJobs;
+    JobsResponse listOfJobs;
 
-    InMemoryFetcherTestImpl(List<JobResponse> listOfJobs) {
+    InMemoryFetcherTestImpl(JobsResponse listOfJobs) {
         this.listOfJobs = listOfJobs;
     }
 
     @Override
-    public List<JobResponse> fetchJobs() {
+    public JobsResponse fetchJobs() {
         return listOfJobs;
     }
 
