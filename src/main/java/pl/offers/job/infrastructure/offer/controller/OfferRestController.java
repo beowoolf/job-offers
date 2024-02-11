@@ -1,5 +1,6 @@
 package pl.offers.job.infrastructure.offer.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,6 @@ import pl.offers.job.domain.offer.OfferFacade;
 import pl.offers.job.domain.offer.dto.OfferRequestDto;
 import pl.offers.job.domain.offer.dto.OfferResponseDto;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

@@ -68,7 +68,7 @@ public class InMemoryOfferRepository implements OfferRepository {
     }
 
     @Override
-    public Iterable<Offer> findAllById(Iterable<String> strings) {
+    public List<Offer> findAllById(Iterable<String> strings) {
         return null;
     }
 

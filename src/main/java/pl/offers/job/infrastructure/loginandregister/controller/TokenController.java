@@ -1,5 +1,6 @@
 package pl.offers.job.infrastructure.loginandregister.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.offers.job.infrastructure.loginandregister.controller.dto.JwtResponseDto;
 import pl.offers.job.infrastructure.loginandregister.controller.dto.TokenRequestDto;
 import pl.offers.job.infrastructure.security.jwt.JwtAuthenticatorFacade;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor

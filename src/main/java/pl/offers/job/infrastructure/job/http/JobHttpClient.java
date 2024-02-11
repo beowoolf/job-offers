@@ -40,6 +40,9 @@ public class JobHttpClient implements JobFetchable {
         } catch (ResourceAccessException e) {
             log.error("Error while fetching jobs using http client: " + e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (IllegalArgumentException e) {
+            log.error("Error while fetching jobs using http client: " + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

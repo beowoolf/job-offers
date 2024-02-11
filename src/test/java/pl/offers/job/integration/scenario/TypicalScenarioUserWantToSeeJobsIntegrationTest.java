@@ -10,9 +10,6 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.utility.DockerImageName;
 import pl.offers.job.domain.job.dto.JobRequestDto;
 import pl.offers.job.domain.job.dto.JobResponseDto;
 import pl.offers.job.domain.loginandregister.dto.RegistrationResultDto;
@@ -21,6 +18,8 @@ import pl.offers.job.infrastructure.loginandregister.controller.dto.JwtResponseD
 import pl.offers.job.integration.BaseIntegrationTest;
 import pl.offers.job.integration.SampleJobResponse;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,8 +34,6 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
 
     public static final String CONTENT_TYPE_HEADER_KEY = "Content-Type";
     public static final String APPLICATION_JSON_CONTENT_TYPE_VALUE = "application/json";
-    @Container
-    public static final MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
     @Autowired
     HttpJobsScheduler httpJobsScheduler;
 
@@ -178,12 +175,12 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         // given && when
         ResultActions performGetForTwoJobs = mockMvc.perform(get(jobsUrl)
                 .header("Authorization", "Bearer " + token)
-                .accept(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+                .accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         );
         // then
         MvcResult performGetForTwoJobsMvcResult = performGetForTwoJobs.andExpect(status().isOk()).andReturn();
-        String jsonWithTwoJobs = performGetForTwoJobsMvcResult.getResponse().getContentAsString();
+        String jsonWithTwoJobs = performGetForTwoJobsMvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
         List<JobResponseDto> twoJobs = objectMapper.readValue(jsonWithTwoJobs, new TypeReference<>() {
         });
         assertThat(twoJobs).hasSize(2);
@@ -276,7 +273,7 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         String singleJobByJobUrlJson = getJobById.andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
-                .getContentAsString();
+                .getContentAsString(StandardCharsets.UTF_8);
         JobResponseDto singleJobByJobUrl = objectMapper.readValue(singleJobByJobUrlJson, JobResponseDto.class);
         assertThat(singleJobByJobUrl).isEqualTo(expectedFirstJob);
 
@@ -301,12 +298,12 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         // given && when
         ResultActions performGetForFourJobs = mockMvc.perform(get(jobsUrl)
                 .header("Authorization", "Bearer " + token)
-                .accept(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+                .accept(MediaType.APPLICATION_JSON_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         );
         // then
         MvcResult performGetForFourJobsMvcResult = performGetForFourJobs.andExpect(status().isOk()).andReturn();
-        String jsonWithFourJobs = performGetForFourJobsMvcResult.getResponse().getContentAsString();
+        String jsonWithFourJobs = performGetForFourJobsMvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
         List<JobResponseDto> fourJobs = objectMapper.readValue(jsonWithFourJobs, new TypeReference<>() {
         });
         assertThat(fourJobs).hasSize(4);
@@ -425,7 +422,7 @@ public class TypicalScenarioUserWantToSeeJobsIntegrationTest extends BaseIntegra
         ResultActions performPostJobsWithOneJob = mockMvc.perform(post(jobsUrl)
                 .header("Authorization", "Bearer " + token)
                 .content(jobToCreateJson)
-                .accept(MediaType.APPLICATION_JSON_VALUE + ";charset=UTF-8")
+                .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
         );
         // then

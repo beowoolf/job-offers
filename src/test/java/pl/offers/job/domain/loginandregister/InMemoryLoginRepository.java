@@ -55,7 +55,7 @@ public class InMemoryLoginRepository implements LoginRepository {
     }
 
     @Override
-    public Iterable<User> findAllById(Iterable<String> strings) {
+    public List<User> findAllById(Iterable<String> strings) {
         return null;
     }
 

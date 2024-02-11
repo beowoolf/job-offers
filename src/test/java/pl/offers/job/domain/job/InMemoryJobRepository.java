@@ -88,7 +88,7 @@ public class InMemoryJobRepository implements JobRepository {
     }
 
     @Override
-    public Iterable<Job> findAllById(Iterable<String> strings) {
+    public List<Job> findAllById(Iterable<String> strings) {
         return null;
     }
 

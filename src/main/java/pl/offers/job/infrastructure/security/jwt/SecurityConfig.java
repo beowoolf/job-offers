@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.offers.job.domain.loginandregister.LoginAndRegisterFacade;
 
 @Configuration
@@ -39,13 +40,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
-                .antMatchers("/swagger-ui/**").permitAll()
-                .antMatchers("/v3/api-docs").permitAll()
-                .antMatchers("/v3/api-docs/swagger-config").permitAll()
-                .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/token/**").permitAll()
-                .antMatchers("/register/**").permitAll()
-                .antMatchers("/swagger-resources/**").permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/v3/api-docs")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/swagger-config")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/webjars/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/token/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/swagger-resources/**")).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().disable()

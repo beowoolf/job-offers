@@ -35,55 +35,55 @@ public class JobFacadeTest {
     @Test
     public void should_save_only_2_jobs_when_repository_had_4_added_with_job_urls() throws JsonProcessingException {
         // given
-		String json1 = """
-                 		{
-                 			"slug": "leverx-integration-architect-cig",
-                 			"title": "Integration Architect (CIG)",
-                 			"requiredSkills": [
-                 				"SAP"
-                 			],
-                 			"niceToHaveSkills": null,
-                 			"workplaceType": "hybrid",
-                 			"workingTime": "full_time",
-                 			"experienceLevel": "mid",
-                 			"employmentTypes": [
-                 				{
-                 					"to": null,
-                 					"from": null,
-                 					"type": "permanent",
-                 					"to_chf": null,
-                 					"to_eur": null,
-                 					"to_gbp": null,
-                 					"to_pln": null,
-                 					"to_usd": null,
-                 					"currency": "usd",
-                 					"from_chf": null,
-                 					"from_eur": null,
-                 					"from_gbp": null,
-                 					"from_pln": null,
-                 					"from_usd": null
-                 				}
-                 			],
-                 			"categoryId": 23,
-                 			"multilocation": [
-                 				{
-                 					"city": "Wroclaw",
-                 					"slug": "leverx-integration-architect-cig",
-                 					"street": "Pilsudskiego 69, 50-019",
-                 					"latitude": 51.100532600000001,
-                 					"longitude": 17.0311415
-                 				}
-                 			],
-                 			"city": "Wroclaw",
-                 			"street": "Pilsudskiego 69, 50-019",
-                 			"latitude": "51.1005326",
-                 			"longitude": "17.0311415",
-                 			"remoteInterview": true,
-                 			"companyName": "LeverX",
-                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
-                 			"publishedAt": "2024-01-31T09:00:00.000Z",
-                 			"openToHireUkrainians": true
-                 		}""";
+        String json1 = """
+                {
+                	"slug": "leverx-integration-architect-cig",
+                	"title": "Integration Architect (CIG)",
+                	"requiredSkills": [
+                		"SAP"
+                	],
+                	"niceToHaveSkills": null,
+                	"workplaceType": "hybrid",
+                	"workingTime": "full_time",
+                	"experienceLevel": "mid",
+                	"employmentTypes": [
+                		{
+                			"to": null,
+                			"from": null,
+                			"type": "permanent",
+                			"to_chf": null,
+                			"to_eur": null,
+                			"to_gbp": null,
+                			"to_pln": null,
+                			"to_usd": null,
+                			"currency": "usd",
+                			"from_chf": null,
+                			"from_eur": null,
+                			"from_gbp": null,
+                			"from_pln": null,
+                			"from_usd": null
+                		}
+                	],
+                	"categoryId": 23,
+                	"multilocation": [
+                		{
+                			"city": "Wroclaw",
+                			"slug": "leverx-integration-architect-cig",
+                			"street": "Pilsudskiego 69, 50-019",
+                			"latitude": 51.100532600000001,
+                			"longitude": 17.0311415
+                		}
+                	],
+                	"city": "Wroclaw",
+                	"street": "Pilsudskiego 69, 50-019",
+                	"latitude": "51.1005326",
+                	"longitude": "17.0311415",
+                	"remoteInterview": true,
+                	"companyName": "LeverX",
+                	"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                	"publishedAt": "2024-01-31T09:00:00.000Z",
+                	"openToHireUkrainians": true
+                }""";
         JobResponse parsedJson11 = objectMapper.readValue(json1, new TypeReference<>() {
         });
         parsedJson11.setSlug(parsedJson11.getSlug() + "1");
@@ -102,55 +102,55 @@ public class JobFacadeTest {
         JobResponse parsedJson16 = objectMapper.readValue(json1, new TypeReference<>() {
         });
         parsedJson16.setSlug(parsedJson16.getSlug() + "6");
-		String json2 = """
-                 		{
-                 			"slug": "leverx-integration-architect-cig",
-                 			"title": "Integration Architect (CIG)",
-                 			"requiredSkills": [
-                 				"SAP"
-                 			],
-                 			"niceToHaveSkills": null,
-                 			"workplaceType": "hybrid",
-                 			"workingTime": "full_time",
-                 			"experienceLevel": "mid",
-                 			"employmentTypes": [
-                 				{
-                 					"to": null,
-                 					"from": null,
-                 					"type": "permanent",
-                 					"to_chf": null,
-                 					"to_eur": null,
-                 					"to_gbp": null,
-                 					"to_pln": null,
-                 					"to_usd": null,
-                 					"currency": "usd",
-                 					"from_chf": null,
-                 					"from_eur": null,
-                 					"from_gbp": null,
-                 					"from_pln": null,
-                 					"from_usd": null
-                 				}
-                 			],
-                 			"categoryId": 23,
-                 			"multilocation": [
-                 				{
-                 					"city": "Wroclaw",
-                 					"slug": "leverx-integration-architect-cig",
-                 					"street": "Pilsudskiego 69, 50-019",
-                 					"latitude": 51.100532600000001,
-                 					"longitude": 17.0311415
-                 				}
-                 			],
-                 			"city": "Wroclaw",
-                 			"street": "Pilsudskiego 69, 50-019",
-                 			"latitude": "51.1005326",
-                 			"longitude": "17.0311415",
-                 			"remoteInterview": true,
-                 			"companyName": "LeverX",
-                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
-                 			"publishedAt": "2024-01-31T09:00:00.000Z",
-                 			"openToHireUkrainians": true
-                 		}""";
+        String json2 = """
+                {
+                	"slug": "leverx-integration-architect-cig",
+                	"title": "Integration Architect (CIG)",
+                	"requiredSkills": [
+                		"SAP"
+                	],
+                	"niceToHaveSkills": null,
+                	"workplaceType": "hybrid",
+                	"workingTime": "full_time",
+                	"experienceLevel": "mid",
+                	"employmentTypes": [
+                		{
+                			"to": null,
+                			"from": null,
+                			"type": "permanent",
+                			"to_chf": null,
+                			"to_eur": null,
+                			"to_gbp": null,
+                			"to_pln": null,
+                			"to_usd": null,
+                			"currency": "usd",
+                			"from_chf": null,
+                			"from_eur": null,
+                			"from_gbp": null,
+                			"from_pln": null,
+                			"from_usd": null
+                		}
+                	],
+                	"categoryId": 23,
+                	"multilocation": [
+                		{
+                			"city": "Wroclaw",
+                			"slug": "leverx-integration-architect-cig",
+                			"street": "Pilsudskiego 69, 50-019",
+                			"latitude": 51.100532600000001,
+                			"longitude": 17.0311415
+                		}
+                	],
+                	"city": "Wroclaw",
+                	"street": "Pilsudskiego 69, 50-019",
+                	"latitude": "51.1005326",
+                	"longitude": "17.0311415",
+                	"remoteInterview": true,
+                	"companyName": "LeverX",
+                	"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                	"publishedAt": "2024-01-31T09:00:00.000Z",
+                	"openToHireUkrainians": true
+                }""";
         JobRequestDto parsedJson21 = objectMapper.readValue(json2, new TypeReference<>() {
         });
         parsedJson21.setSlug(parsedJson21.getSlug() + "1");
@@ -188,61 +188,61 @@ public class JobFacadeTest {
                         response.get(0).getUrl(),
                         response.get(1).getUrl()
                 )
-        ).containsExactlyInAnyOrder("https://justjoin.it/offers/" + parsedJson11.getSlug(), "https://justjoin.it/offers/" + parsedJson12.getSlug());
+        ).containsExactlyInAnyOrder("https://justjoin.it/offers/" + parsedJson11.getSlug(), "https://justjoin.it/offers/" + parsedJson16.getSlug());
     }
 
     @Test
     public void should_save_4_jobs_when_there_are_no_jobs_in_database() throws JsonProcessingException {
         // given
         String json = """
-                 		{
-                 			"slug": "leverx-integration-architect-cig",
-                 			"title": "Integration Architect (CIG)",
-                 			"requiredSkills": [
-                 				"SAP"
-                 			],
-                 			"niceToHaveSkills": null,
-                 			"workplaceType": "hybrid",
-                 			"workingTime": "full_time",
-                 			"experienceLevel": "mid",
-                 			"employmentTypes": [
-                 				{
-                 					"to": null,
-                 					"from": null,
-                 					"type": "permanent",
-                 					"to_chf": null,
-                 					"to_eur": null,
-                 					"to_gbp": null,
-                 					"to_pln": null,
-                 					"to_usd": null,
-                 					"currency": "usd",
-                 					"from_chf": null,
-                 					"from_eur": null,
-                 					"from_gbp": null,
-                 					"from_pln": null,
-                 					"from_usd": null
-                 				}
-                 			],
-                 			"categoryId": 23,
-                 			"multilocation": [
-                 				{
-                 					"city": "Wroclaw",
-                 					"slug": "leverx-integration-architect-cig",
-                 					"street": "Pilsudskiego 69, 50-019",
-                 					"latitude": 51.100532600000001,
-                 					"longitude": 17.0311415
-                 				}
-                 			],
-                 			"city": "Wroclaw",
-                 			"street": "Pilsudskiego 69, 50-019",
-                 			"latitude": "51.1005326",
-                 			"longitude": "17.0311415",
-                 			"remoteInterview": true,
-                 			"companyName": "LeverX",
-                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
-                 			"publishedAt": "2024-01-31T09:00:00.000Z",
-                 			"openToHireUkrainians": true
-                 		}""";
+                {
+                	"slug": "leverx-integration-architect-cig",
+                	"title": "Integration Architect (CIG)",
+                	"requiredSkills": [
+                		"SAP"
+                	],
+                	"niceToHaveSkills": null,
+                	"workplaceType": "hybrid",
+                	"workingTime": "full_time",
+                	"experienceLevel": "mid",
+                	"employmentTypes": [
+                		{
+                			"to": null,
+                			"from": null,
+                			"type": "permanent",
+                			"to_chf": null,
+                			"to_eur": null,
+                			"to_gbp": null,
+                			"to_pln": null,
+                			"to_usd": null,
+                			"currency": "usd",
+                			"from_chf": null,
+                			"from_eur": null,
+                			"from_gbp": null,
+                			"from_pln": null,
+                			"from_usd": null
+                		}
+                	],
+                	"categoryId": 23,
+                	"multilocation": [
+                		{
+                			"city": "Wroclaw",
+                			"slug": "leverx-integration-architect-cig",
+                			"street": "Pilsudskiego 69, 50-019",
+                			"latitude": 51.100532600000001,
+                			"longitude": 17.0311415
+                		}
+                	],
+                	"city": "Wroclaw",
+                	"street": "Pilsudskiego 69, 50-019",
+                	"latitude": "51.1005326",
+                	"longitude": "17.0311415",
+                	"remoteInterview": true,
+                	"companyName": "LeverX",
+                	"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                	"publishedAt": "2024-01-31T09:00:00.000Z",
+                	"openToHireUkrainians": true
+                }""";
         JobRequestDto parsedJson1 = objectMapper.readValue(json, new TypeReference<>() {
         });
         parsedJson1.setSlug(parsedJson1.getSlug() + "1");
@@ -271,54 +271,54 @@ public class JobFacadeTest {
     public void should_find_job_by_id_when_job_was_saved() throws JsonProcessingException {
         // given
         String json = """
-                 		{
-                 			"slug": "leverx-integration-architect-cig",
-                 			"title": "Integration Architect (CIG)",
-                 			"requiredSkills": [
-                 				"SAP"
-                 			],
-                 			"niceToHaveSkills": null,
-                 			"workplaceType": "hybrid",
-                 			"workingTime": "full_time",
-                 			"experienceLevel": "mid",
-                 			"employmentTypes": [
-                 				{
-                 					"to": null,
-                 					"from": null,
-                 					"type": "permanent",
-                 					"to_chf": null,
-                 					"to_eur": null,
-                 					"to_gbp": null,
-                 					"to_pln": null,
-                 					"to_usd": null,
-                 					"currency": "usd",
-                 					"from_chf": null,
-                 					"from_eur": null,
-                 					"from_gbp": null,
-                 					"from_pln": null,
-                 					"from_usd": null
-                 				}
-                 			],
-                 			"categoryId": 23,
-                 			"multilocation": [
-                 				{
-                 					"city": "Wroclaw",
-                 					"slug": "leverx-integration-architect-cig",
-                 					"street": "Pilsudskiego 69, 50-019",
-                 					"latitude": 51.100532600000001,
-                 					"longitude": 17.0311415
-                 				}
-                 			],
-                 			"city": "Wroclaw",
-                 			"street": "Pilsudskiego 69, 50-019",
-                 			"latitude": "51.1005326",
-                 			"longitude": "17.0311415",
-                 			"remoteInterview": true,
-                 			"companyName": "LeverX",
-                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
-                 			"publishedAt": "2024-01-31T09:00:00.000Z",
-                 			"openToHireUkrainians": true
-                 		}""";
+                {
+                	"slug": "leverx-integration-architect-cig",
+                	"title": "Integration Architect (CIG)",
+                	"requiredSkills": [
+                		"SAP"
+                	],
+                	"niceToHaveSkills": null,
+                	"workplaceType": "hybrid",
+                	"workingTime": "full_time",
+                	"experienceLevel": "mid",
+                	"employmentTypes": [
+                		{
+                			"to": null,
+                			"from": null,
+                			"type": "permanent",
+                			"to_chf": null,
+                			"to_eur": null,
+                			"to_gbp": null,
+                			"to_pln": null,
+                			"to_usd": null,
+                			"currency": "usd",
+                			"from_chf": null,
+                			"from_eur": null,
+                			"from_gbp": null,
+                			"from_pln": null,
+                			"from_usd": null
+                		}
+                	],
+                	"categoryId": 23,
+                	"multilocation": [
+                		{
+                			"city": "Wroclaw",
+                			"slug": "leverx-integration-architect-cig",
+                			"street": "Pilsudskiego 69, 50-019",
+                			"latitude": 51.100532600000001,
+                			"longitude": 17.0311415
+                		}
+                	],
+                	"city": "Wroclaw",
+                	"street": "Pilsudskiego 69, 50-019",
+                	"latitude": "51.1005326",
+                	"longitude": "17.0311415",
+                	"remoteInterview": true,
+                	"companyName": "LeverX",
+                	"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                	"publishedAt": "2024-01-31T09:00:00.000Z",
+                	"openToHireUkrainians": true
+                }""";
         JobRequestDto parsedJson = objectMapper.readValue(json, new TypeReference<>() {
         });
         JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();
@@ -376,54 +376,54 @@ public class JobFacadeTest {
     public void should_throw_duplicate_key_exception_when_with_job_url_exists() throws JsonProcessingException {
         // given
         String json = """
-                 		{
-                 			"slug": "leverx-integration-architect-cig",
-                 			"title": "Integration Architect (CIG)",
-                 			"requiredSkills": [
-                 				"SAP"
-                 			],
-                 			"niceToHaveSkills": null,
-                 			"workplaceType": "hybrid",
-                 			"workingTime": "full_time",
-                 			"experienceLevel": "mid",
-                 			"employmentTypes": [
-                 				{
-                 					"to": null,
-                 					"from": null,
-                 					"type": "permanent",
-                 					"to_chf": null,
-                 					"to_eur": null,
-                 					"to_gbp": null,
-                 					"to_pln": null,
-                 					"to_usd": null,
-                 					"currency": "usd",
-                 					"from_chf": null,
-                 					"from_eur": null,
-                 					"from_gbp": null,
-                 					"from_pln": null,
-                 					"from_usd": null
-                 				}
-                 			],
-                 			"categoryId": 23,
-                 			"multilocation": [
-                 				{
-                 					"city": "Wroclaw",
-                 					"slug": "leverx-integration-architect-cig",
-                 					"street": "Pilsudskiego 69, 50-019",
-                 					"latitude": 51.100532600000001,
-                 					"longitude": 17.0311415
-                 				}
-                 			],
-                 			"city": "Wroclaw",
-                 			"street": "Pilsudskiego 69, 50-019",
-                 			"latitude": "51.1005326",
-                 			"longitude": "17.0311415",
-                 			"remoteInterview": true,
-                 			"companyName": "LeverX",
-                 			"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
-                 			"publishedAt": "2024-01-31T09:00:00.000Z",
-                 			"openToHireUkrainians": true
-                 		}""";
+                {
+                	"slug": "leverx-integration-architect-cig",
+                	"title": "Integration Architect (CIG)",
+                	"requiredSkills": [
+                		"SAP"
+                	],
+                	"niceToHaveSkills": null,
+                	"workplaceType": "hybrid",
+                	"workingTime": "full_time",
+                	"experienceLevel": "mid",
+                	"employmentTypes": [
+                		{
+                			"to": null,
+                			"from": null,
+                			"type": "permanent",
+                			"to_chf": null,
+                			"to_eur": null,
+                			"to_gbp": null,
+                			"to_pln": null,
+                			"to_usd": null,
+                			"currency": "usd",
+                			"from_chf": null,
+                			"from_eur": null,
+                			"from_gbp": null,
+                			"from_pln": null,
+                			"from_usd": null
+                		}
+                	],
+                	"categoryId": 23,
+                	"multilocation": [
+                		{
+                			"city": "Wroclaw",
+                			"slug": "leverx-integration-architect-cig",
+                			"street": "Pilsudskiego 69, 50-019",
+                			"latitude": 51.100532600000001,
+                			"longitude": 17.0311415
+                		}
+                	],
+                	"city": "Wroclaw",
+                	"street": "Pilsudskiego 69, 50-019",
+                	"latitude": "51.1005326",
+                	"longitude": "17.0311415",
+                	"remoteInterview": true,
+                	"companyName": "LeverX",
+                	"companyLogoThumbUrl": "https://public.justjoin.it/offers/company_logos/thumb_x2/d7395b4e4eb5edd530f1137435bb0a91a63f9117.jpg?1700137000",
+                	"publishedAt": "2024-01-31T09:00:00.000Z",
+                	"openToHireUkrainians": true
+                }""";
         JobRequestDto parsedJson = objectMapper.readValue(json, new TypeReference<>() {
         });
         JobFacade jobFacade = new JobFacadeTestConfiguration(new JobsResponse(true, List.of())).jobFacadeForTests();

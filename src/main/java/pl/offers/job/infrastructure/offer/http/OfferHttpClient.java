@@ -42,6 +42,9 @@ public class OfferHttpClient implements OfferFetchable {
         } catch (ResourceAccessException e) {
             log.error("Error while fetching offers using http client: " + e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (IllegalArgumentException e) {
+            log.error("Error while fetching offers using http client: " + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
