@@ -30,7 +30,6 @@
         <spring-data-redis.version>2.4.5</spring-data-redis.version>
         <jedis.version>3.3.0</jedis.version>
     </properties>
-
     <dependencies>
         <!--  SPRING BOOT -->
         <dependency>
