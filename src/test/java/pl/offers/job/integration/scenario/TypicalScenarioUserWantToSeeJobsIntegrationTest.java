@@ -18,7 +18,6 @@ import pl.offers.job.infrastructure.loginandregister.controller.dto.JwtResponseD
 import pl.offers.job.integration.BaseIntegrationTest;
 import pl.offers.job.integration.SampleJobResponse;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.regex.Pattern;
