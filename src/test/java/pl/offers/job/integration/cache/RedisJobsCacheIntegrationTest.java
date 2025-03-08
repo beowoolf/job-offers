@@ -41,7 +41,7 @@ class RedisJobsCacheIntegrationTest extends BaseIntegrationTest {
 
     @DynamicPropertySource
     public static void propertyOverride(DynamicPropertyRegistry registry) {
-        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+        registry.add("spring.data.mongodb.uri", DATABASE_CONTAINER::getReplicaSetUrl);
         registry.add("spring.redis.port", () -> REDIS.getFirstMappedPort().toString());
         registry.add("spring.cache.type", () -> "redis");
         registry.add("spring.cache.redis.time-to-live", () -> "PT1S");

@@ -15,7 +15,7 @@ public class JobUrlDuplicateErrorIntegrationTest extends BaseIntegrationTest {
 
     @DynamicPropertySource
     public static void propertyOverride(DynamicPropertyRegistry registry) {
-        registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
+        registry.add("spring.data.mongodb.uri", DATABASE_CONTAINER::getReplicaSetUrl);
     }
 
     @Test
