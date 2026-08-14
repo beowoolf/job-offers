@@ -5,13 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.15</version>
         <version>3.4.16</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.offers</groupId>
     <artifactId>job</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>war</packaging>
     <name>job</name>
     <description>WebAPI z ofertami pracy</description>
